@@ -30,7 +30,10 @@ class PneumoniaDetectionApp {
       e.preventDefault();
       this.uploadArea.classList.remove('dragover');
       const file = e.dataTransfer.files[0];
-      if (file && file.type.startsWith('image/')) this.handleFileSelect(file);
+      if (file && file.type.startsWith('image/')) {
+        this.imageInput.files = e.dataTransfer.files;  // ✅ ensures Analyze button sees the file
+        this.handleFileSelect(file);
+      }
     });
     this.removeImage.addEventListener('click', () => this.clearImage());
     this.analyzeBtn.addEventListener('click', () => this.analyzeImage());
