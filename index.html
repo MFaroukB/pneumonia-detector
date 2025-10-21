@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-ray Pneumonia Detection</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🩺 X-ray Pneumonia Detection</h1>
+            <p>Upload an X-ray image to detect pneumonia using AI</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <h3>Drop your X-ray image here</h3>
+                        <p>or click to browse files</p>
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                    </div>
+                </div>
+                
+                <div class="image-preview" id="imagePreview" style="display: none;">
+                    <img id="previewImage" alt="X-ray preview">
+                    <button id="removeImage" class="remove-btn">✕</button>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="analyzeBtn" class="analyze-btn" disabled>
+                    <span class="btn-text">Analyze X-ray</span>
+                    <span class="btn-loader" style="display: none;">⏳</span>
+                </button>
+            </div>
+
+            <div class="results" id="results" style="display: none;">
+                <h3>Analysis Results</h3>
+                <div class="result-card">
+                    <div class="result-status" id="resultStatus"></div>
+                    <div class="confidence-meter">
+                        <div class="confidence-label">Confidence Level</div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceFill"></div>
+                        </div>
+                        <div class="confidence-text" id="confidenceText"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>ℹ️ Important Information</h3>
+                <ul>
+                    <li>This tool is for educational purposes only</li>
+                    <li>Always consult with a medical professional for accurate diagnosis</li>
+                    <li>Upload clear, high-quality X-ray images for best results</li>
+                    <li>The model works best with chest X-ray images</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
