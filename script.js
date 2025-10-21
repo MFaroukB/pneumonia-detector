@@ -93,21 +93,21 @@ class PneumoniaDetectionApp {
   async fileToTensor(file) {
     const img = document.createElement('img');
     const dataUrl = await new Promise(resolve => {
-      const reader = new FileReader();
-      reader.onload = e => resolve(e.target.result);
-      reader.readAsDataURL(file);
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result);
+        reader.readAsDataURL(file);
     });
     img.src = dataUrl;
     await new Promise(res => (img.onload = res));
 
     return tf.browser
-      .fromPixels(img, 1)
-      .resizeBilinear([256, 256])
-      .toFloat()
-      .div(255)
-      .expandDims(0)
-      .expandDims(-1);
-  }
+        .fromPixels(img, 1)        // grayscale (H, W, 1)
+        .resizeBilinear([256, 256])
+        .toFloat()
+        .div(255)
+        .expandDims(0);            // now shape is [1, 256, 256, 1]
+    }
+
 
   displayResults(hasPneumonia, confidence) {
     this.resultStatus.innerHTML = hasPneumonia
